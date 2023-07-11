@@ -10,6 +10,14 @@ if [ ! -n "$SERVER_NAME" ] ; then
     SERVER_NAME='localhost'
 fi
 
+# set server port from optional ENV var
+if [ ! -z "$PORT" ] ; then
+    SERVER_PORT="$PORT"
+fi
+if [ ! -n "$SERVER_PORT" ] ; then
+    SERVER_PORT=80
+fi
+
 # set redirect code from optional ENV var
 # allowed Status Codes are: 301, 302, 303, 307, 308
 expr match "$SERVER_REDIRECT_CODE" '30[12378]$' > /dev/null || SERVER_REDIRECT_CODE='301'
